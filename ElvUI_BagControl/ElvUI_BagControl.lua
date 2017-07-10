@@ -3,7 +3,6 @@ local B = E:GetModule("Bags")
 local MyPlugin = E:NewModule("BagControl", "AceHook-3.0", "AceEvent-3.0", "AceTimer-3.0");
 
 local EP = LibStub("LibElvUIPlugin-1.0")
-local addonName, addonTable = ...
 
 P["BagControl"] = {
 	["Enabled"] = true,
@@ -13,7 +12,6 @@ P["BagControl"] = {
 		["Bank"] = true,
 		["GB"] = true,
 		["AH"] = true,
-		["VS"] = true,
 		["TS"] = true,
 		["Trade"] = true
 	},
@@ -23,7 +21,6 @@ P["BagControl"] = {
 		["Bank"] = true,
 		["GB"] = true,
 		["AH"] = true,
-		["VS"] = true,
 		["TS"] = true,
 		["Trade"] = true
 	}
@@ -35,7 +32,6 @@ local OpenEvents = {
 	["BANKFRAME_OPENED"] = "Bank",
 	["GUILDBANKFRAME_OPENED"] = "GB",
 	["AUCTION_HOUSE_SHOW"] = "AH",
-	["VOID_STORAGE_OPEN"] = "VS",
 	["TRADE_SKILL_SHOW"] = "TS",
 	["TRADE_SHOW"] = "Trade"
 }
@@ -46,7 +42,6 @@ local CloseEvents = {
 	["BANKFRAME_CLOSED"] = "Bank",
 	["GUILDBANKFRAME_CLOSED"] = "GB",
 	["AUCTION_HOUSE_CLOSED"] = "AH",
-	["VOID_STORAGE_CLOSE"] = "VS",
 	["TRADE_SKILL_CLOSE"] = "TS",
 	["TRADE_CLOSED"] = "Trade"
 }
@@ -105,18 +100,13 @@ function MyPlugin:InsertOptions()
 						type = "toggle",
 						name = L["Auction House"]
 					},
-					VS = {
-						order = 6,
-						type = "toggle",
-						name = L["Void Storage"]
-					},
 					TS = {
-						order = 7,
+						order = 6,
 						type = "toggle",
 						name = L["Crafting"]
 					},
 					Trade = {
-						order = 8,
+						order = 7,
 						type = "toggle",
 						name = L["Trade with Player"]
 					}
@@ -156,18 +146,13 @@ function MyPlugin:InsertOptions()
 						type = "toggle",
 						name = L["Auction House"]
 					},
-					VS = {
-						order = 6,
-						type = "toggle",
-						name = L["Void Storage"]
-					},
 					TS = {
-						order = 7,
+						order = 6,
 						type = "toggle",
 						name = L["Crafting"]
 					},
 					Trade = {
-						order = 8,
+						order = 7,
 						type = "toggle",
 						name = L["Trade with Player"]
 					}
@@ -242,7 +227,7 @@ function MyPlugin:Update()
 end
 
 function MyPlugin:Initialize()
-	EP:RegisterPlugin(addonName, MyPlugin.InsertOptions)
+	EP:RegisterPlugin("ElvUI_BagControl", MyPlugin.InsertOptions)
 	MyPlugin:Update()
 end
 
